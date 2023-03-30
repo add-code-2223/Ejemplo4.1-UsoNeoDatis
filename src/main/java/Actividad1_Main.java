@@ -40,8 +40,8 @@ public static void main(String[] args) {
     ODB odb = ODBFactory.open("EQUIPOS.DB");
     //Almaceno los objetos en la BD
     OID object_id = odb.store (j1);
-    System.out.println("Se ha almacenado el j1 con OID: " + object_id.getObjectId());
-    odb.store (j2);
+    System.out.println("Se ha almacenado el j1 con OID: " + object_id.getObjectId() + "clase: " + object_id.getClassId() + " type: " + object_id.getType() );
+    OID object_id2 = odb.store (j2);
     odb.store (j3);
     odb.store (j4);
     
@@ -56,12 +56,16 @@ public static void main(String[] args) {
     int i = 1; //contador para mostrar listados los objetos
     
     //visualizar los objetos Jugador
-    while(objectsJug.hasNext()) {
-        // Creo un objeto Jugadores y almaceno ahí el objeto que recupero de la BD
-        Jugadores jug = (Jugadores)objectsJug.next();
-        // Imprimo las propiedades que me interesan de ese objeto
-        System.out.println((i++)+" - "+"Nombre: "+jug.getNombre()+", Deporte: "+ jug.getDeporte()+", Pais: "+ jug.getPais().getNombrePais()+", Edad: "+ jug.getEdad());
-    }
+    
+    for (Jugadores jugador : objectsJug) {
+	System.out.println("Nombre jugador:" + jugador.getNombre());
+	}
+//    while(objectsJug.hasNext()) {
+//        // Creo un objeto Jugadores y almaceno ahí el objeto que recupero de la BD
+//        Jugadores jug = (Jugadores)objectsJug.next();
+//        // Imprimo las propiedades que me interesan de ese objeto
+//        System.out.println((i++)+" - "+"Nombre: "+jug.getNombre()+", Deporte: "+ jug.getDeporte()+", Pais: "+ jug.getPais().getNombrePais()+", Edad: "+ jug.getEdad());
+//    }
     
     //recupero todos los objetos Paises de la BD
     Objects<Paises> objectsPaises = odb.getObjects(Paises.class);

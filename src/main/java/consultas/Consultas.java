@@ -37,9 +37,9 @@ public class Consultas {
 		}
 
 		// read(3);
-		// filtrar();
+		//filtrar();
 		//consultaCompleja();
-		//consultaCompleja2();
+		consultaCompleja2();
 		
 //		List<String> campos = new ArrayList<String>();
 //		campos.add("nombre");
@@ -65,7 +65,10 @@ public class Consultas {
 	private static void filtrar() {
 		// Ejemplo. Búsqueda de todos los objetos de la clase
 		// Jugadores que de atributo ‘deporte’ tienen puesto ‘tenis’
-		IQuery query = new CriteriaQuery(Jugadores.class, Where.equal("deporte", "tenis"));
+		ICriterion criterio = Where.equal("deporte", "tenis");
+		
+		IQuery query = new CriteriaQuery(Jugadores.class, 
+				criterio);
 
 		// ordenar
 		query.orderByAsc("nombre,edad");
@@ -96,7 +99,7 @@ public class Consultas {
 	private static void consultaCompleja2() {
 		// Ejemplo. Se quiere buscar objetos de la clase Jugadores
 		// que tengan:
-		// 14 años
+		// >=14 años
 		// y (España O Italia O Francia)
 		ICriterion criterio = new And().add(Where.ge("edad", 14))
 				.add(new Or().add(Where.equal("pais.nombrePais", "España"))

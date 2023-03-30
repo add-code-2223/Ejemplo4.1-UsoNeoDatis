@@ -5,6 +5,8 @@
  */
 package clases;
 
+import java.util.Optional;
+
 /**
  *
  * @author mrnov
@@ -12,6 +14,7 @@ package clases;
 public class Jugadores {
  
 // Propiedades
+	//private Optional<Long> oid;
 private String nombre;
 private String deporte;
 private int edad;
