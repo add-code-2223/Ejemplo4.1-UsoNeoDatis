@@ -8,12 +8,13 @@
  *
  * @author mrnov
  */
-import clases.Jugadores;
-import clases.Paises;
-
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
+import org.neodatis.odb.OID;
 import org.neodatis.odb.Objects;
+
+import clases.Jugadores;
+import clases.Paises;
 
 //Principal 
 public class Actividad1_Main {//CREACIÓN Y LLENADO DE BD
@@ -38,7 +39,8 @@ public static void main(String[] args) {
     
     ODB odb = ODBFactory.open("EQUIPOS.DB");
     //Almaceno los objetos en la BD
-    odb.store (j1);
+    OID object_id = odb.store (j1);
+    System.out.println("Se ha almacenado el j1 con OID: " + object_id.getObjectId());
     odb.store (j2);
     odb.store (j3);
     odb.store (j4);
